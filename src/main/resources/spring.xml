@@ -12,21 +12,22 @@
     http://www.springframework.org/schema/aop/spring-aop.xsd
     http://www.springframework.org/schema/util 
     http://www.springframework.org/schema/util/spring-util.xsd">
-
-<context:annotation-config />
-<context:property-placeholder location="classpath:details.properties"/>
-<bean id="db" class="com.bms.dbutil.DBUtil">
-<property name="props">
-	<props>
-		<prop key="url">${url}</prop>
-		<prop key="username">${uname}</prop>
-		<prop key="password">${password}</prop>
-	</props>
-</property>
-</bean>
-<bean id="obj" class="com.bms.beans.GreetingsImpl">
-	<property  value="Thummala Eshwar Reddy" name="name"/>
-	<property name="id" value="44"/>
-	<property name="salary" value="40000.00"></property>
-</bean>
+    
+    <context:component-scan base-package="com.bms.services"></context:component-scan>
+    <!-- <bean id="mba" class="com.bms.services.BeforeLogger"/>
+    <bean id="al" class="com.bms.services.AfterLogger"/>
+    <bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+    	<property name="interceptorNames">
+    		<list>
+    			<value>mba</value>
+    			<value>al</value>
+    		</list>
+    	</property>
+    	<property name="targetName" value="bacc"></property>
+    </bean> -->
+    <bean id="bacc" class="com.bms.beans.BankAccount">
+    	<property name="id" value="hdfc123"></property>
+    	<property name="balance" value="10000"></property>
+    </bean>
+    <bean class="org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator"></bean>
 </beans>
